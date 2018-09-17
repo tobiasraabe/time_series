@@ -1,0 +1,1 @@
+julia -e 'using Pkg; Pkg.add.([\"DataFrames\", \"Distributions\", \"DSGE\", \"GLM\", \"HypothesisTests\", \"IJulia\", \"Plots\", \"StatsBase\", \"XLSX\"])'

@@ -1,0 +1,7 @@
+docs/_build
+.ipynb_checkpoints
+_lectures
+_problem_sets
+_literature
+*.bib.bak
+*.bib.sav
