@@ -1,10 +1,14 @@
 .. raw:: html
 
-    | <b>Binder</b>
+    | <b><a href="https://mybinder.org/v2/gh/tobiasraabe/time_series/master">Binder</a></b>
     | <b><a href="https://time_series.readthedocs.io/en/latest/index.html">Documentation</a></b>
     |
 
     <h1>Time Series</h1>
+
+.. image:: https://mybinder.org/badge.svg
+    :target: https://mybinder.org/v2/gh/tobiasraabe/time_series/master
+    :alt: Binder
 
 .. image:: https://readthedocs.org/projects/time_series/badge/?version=latest
     :target: https://time_series.readthedocs.io/en/latest/?badge=latest

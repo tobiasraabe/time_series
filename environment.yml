@@ -2,7 +2,7 @@ name: ts
 channels:
   - defaults
 dependencies:
-  - python=3.6.6
+  - python=3.6
   - pip:
     - ghp-import==0.5.5
     - jupyterlab==0.33.6
