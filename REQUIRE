@@ -1,8 +1,7 @@
-DataFrames 0.13.1
+DataFrames 0.14.1
 Distributions 0.16.4
 GLM 1.0.1
 HypothesisTests 0.8.0
-IJulia 1.12.0
-Plots 0.20.2
-StatsBase 0.25.0
-XLSX 0.4.1
+IJulia 1.13.0
+Plots 0.20.6
+XLSX 0.4.2
