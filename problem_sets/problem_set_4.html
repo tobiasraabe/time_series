@@ -1,0 +1,702 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Problem Set 4: VAR models &mdash; Time Series  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Problem Set 5: Structural VARs" href="problem_set_5.html" />
+    <link rel="prev" title="Problem Set 3: Assorted topics on single equation models" href="problem_set_3.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Time Series
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html#working-on-the-project">Working on the Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/julia.html">Julia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lecture</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lecture/01_introduction.html">1. Introduction &amp; Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lecture/02_ar_ma.html">2. Autoregressive and Moving Average Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lecture/07_var.html">3. Vector Autoregressive (VAR) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lecture/08_svar.html">4. Structural Vector Autoregressive (SVAR) Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Problem Sets</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="problem_set_1.html">Problem Set 1: Hodrick-Prescott Filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="problem_set_2.html">Problem Set 2: Stationary Univariate Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="problem_set_3.html">Problem Set 3: Assorted topics on single equation models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Problem Set 4: VAR models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Exercise-1">Exercise 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Exercise-2">Exercise 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#Exercise-3">Exercise 3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="problem_set_5.html">Problem Set 5: Structural VARs</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Time Series</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Problem Set 4: VAR models</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/problem_sets/problem_set_4.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput div.prompt,
+div.nbinput div.input_area,
+div.nbinput div[class*=highlight],
+div.nbinput div[class*=highlight] pre,
+div.nboutput,
+div.nbinput div.prompt,
+div.nbinput div.output_area,
+div.nboutput div[class*=highlight],
+div.nboutput div[class*=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput,
+    div.nboutput {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput div.prompt pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput div.prompt pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput div.prompt,
+div.nboutput div.prompt {
+    min-width: 8ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+@media (max-width: 540px) {
+    div.nbinput div.prompt,
+    div.nboutput div.prompt {
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput div.prompt.empty {
+        padding: 0;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput div.prompt pre,
+div.nboutput div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput div.input_area,
+div.nboutput div.output_area {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput div.input_area,
+    div.nboutput div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput div.input_area {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="Problem-Set-4:-VAR-models">
+<h1>Problem Set 4: VAR models<a class="headerlink" href="#Problem-Set-4:-VAR-models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Exercise-1">
+<h2>Exercise 1<a class="headerlink" href="#Exercise-1" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following VAR</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    y_t &amp;= (1 + \beta) y_{t-1} - \beta \alpha x_{t-1} + \epsilon_{1t}\\
+    x_t &amp;= \gamma y_{t-1} + (1 - \gamma\alpha) x_{t-1} + \epsilon_{2t}
+\end{align}\end{split}\]</div>
+<p>Show that this VAR is non-stationary.</p>
+<p>To show the former statement, we will first rewrite the system of
+equations in matrix notation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    \begin{pmatrix} y_t \\ x_t \end{pmatrix} = \begin{pmatrix}1 + \beta &amp; -\alpha\beta\\\gamma &amp; 1 - \alpha\gamma\end{pmatrix} \begin{pmatrix}y_{t-1}\\x_{t-1}\end{pmatrix} + \begin{pmatrix}\epsilon_{1t}\\\epsilon_{2t}\end{pmatrix}
+\end{align}\end{split}\]</div>
+<p>For stationarity, it has to hold that</p>
+<div class="math notranslate nohighlight">
+\[\det(A(z)) = \det(I_2 - A_1 z) \neq 0\]</div>
+<p>Inserting the values from the previous formula yields</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+    \det(A(z)) &amp;= \det(I_2 - A_1 z)\\
+               &amp;= \det\begin{pmatrix}
+                           1 - (1 + \beta)z &amp; \alpha\beta z\\
+                           -\gamma z &amp; 1 - (1 - \alpha\gamma)z
+                       \end{pmatrix}\\
+               &amp;= (1 - (1 + \beta)z)(1 - (1 - \alpha\gamma)z) + \alpha\beta\gamma z^2\\
+               &amp;= 1 - (1 - \alpha\gamma) z - (1 + \beta)z + (1 + \beta)(1 - \alpha\gamma)z^2 + \alpha\beta\gamma z^2\\
+               &amp;= 1 - z + \alpha\gamma z - z - \beta z + (1 - \alpha\gamma + \beta - \alpha\beta\gamma)z^2 + \alpha\beta\gamma z^2\\
+               &amp;= 1 + (\alpha\gamma - 2 - \beta)z + (1 - \alpha\gamma + \beta)z^2
+\end{align}\end{split}\]</div>
+<p><strong>TODO</strong>: Finish proving non-stationarity</p>
+</div>
+<div class="section" id="Exercise-2">
+<h2>Exercise 2<a class="headerlink" href="#Exercise-2" title="Permalink to this headline">¶</a></h2>
+<p>Consider a stationary vector-autoregressive process
+<span class="math notranslate nohighlight">\(A(L)X_t = \epsilon_t\)</span> and its corresponding moving average
+representation <span class="math notranslate nohighlight">\(X_t = C(L)\epsilon_t\)</span>, where
+<span class="math notranslate nohighlight">\(C(L) = \sum^\infty_{i=0} C_i L^i\)</span>.</p>
+<ol class="arabic simple">
+<li>Find the moving average coefficients for a <span class="math notranslate nohighlight">\(VAR(1)\)</span> process.</li>
+</ol>
+<p>Given a <span class="math notranslate nohighlight">\(VAR(1)\)</span> with
+<span class="math notranslate nohighlight">\(X_t = \nu + A_1 X_{t-1} + \epsilon_t\)</span>, we can rewrite the process
+the following way:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+                   X_t &amp;= \nu + A_1 X_{t-1} + \epsilon_t\\
+       (I_K - A_1 L) X_t &amp;= \nu + \epsilon_t\\
+   \end{align}\end{split}\]</div>
+<p>Then, for the Wold representation we need that
+<span class="math notranslate nohighlight">\(C(L)(I_K - A_1 L) = I_K\)</span> with
+<span class="math notranslate nohighlight">\(C(L) = \sum^\infty_{i=0} C^i L^i\)</span>. Premultiply yields:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+       I_K &amp;= \sum^\infty_{i=0} C_i L^i (I_K - A_1 L)\\
+           &amp;= C_0 + C_1 L + C_2 L^2 + \dots\\
+           &amp;- C_0 A_1 L - C_1 A_1 L^2 + \dots\\
+   \end{align}\end{split}\]</div>
+<p>Matching by the lag operator yields the following relation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+       L = 0: &amp;&amp; C_0 &amp;= I_K\\
+       L = 1: &amp;&amp; C_1 &amp;= C_0 A_1 = A_1\\
+       L = 2: &amp;&amp; C_2 &amp;= C_1 A_1 = A^2_1\\
+       \vdots &amp;&amp; \vdots\\
+       L = i  &amp;&amp; C_i &amp;= A^i_1
+   \end{align}\end{split}\]</div>
+<ol class="arabic simple" start="2">
+<li>Show that the moving average coefficients for a <span class="math notranslate nohighlight">\(VAR(2)\)</span> can
+befound recoursively by <span class="math notranslate nohighlight">\(C_0 = I\)</span>, <span class="math notranslate nohighlight">\(C_1 = A_1\)</span>, and
+<span class="math notranslate nohighlight">\(C_i = A_1 C_{i-1} + A_2 C_{i-2}\)</span> for <span class="math notranslate nohighlight">\(i = 2, \dots\)</span>.</li>
+</ol>
+<p>First, let us define a <span class="math notranslate nohighlight">\(VAR(2)\)</span> process as
+<span class="math notranslate nohighlight">\(X_t = \nu + A_1 X_{t-1} + A_2 X_{t-2} + \epsilon_t\)</span>. Then,
+rewrite the process with the lag operator and apply the Wold
+representation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+                             X_t &amp;= \nu + A_1 X_{t-1} + A_2 X_{t-2} + \epsilon_t\\
+       (I_K - A_1 L - A_2 L^2) X_t &amp;= \nu + \epsilon_t\\
+   \end{align}\end{split}\]</div>
+<p>The Wold representation requires that
+<span class="math notranslate nohighlight">\(C(L)(I_K - A_1 L - A_2 L) = I_K\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+       I_K &amp;= \sum^\infty_{i=0} C_i L^i (I_K - A_1 L - A_2 L^2)\\
+           &amp;= C_0 + C_1 L + C_2 L^2 + C_3 L^3 + \dots\\
+           &amp;- C_0 A_1 L - C_1 A_1 L^2 - C_2 A_1 L^3 - \dots\\
+           &amp;- C_0 A_2 L^2 - C_1 A_2 L^3 - \dots
+   \end{align}\end{split}\]</div>
+<p>Matching by the lag operator yields the following relation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{align}
+       L = 0: &amp;&amp; C_0 &amp;= I_K\\
+       L = 1: &amp;&amp; C_1 &amp;= C_0 A_1 = A_1\\
+       L = 2: &amp;&amp; C_2 &amp;= C_1 A_1 + C_0 A_2\\
+       L = 3: &amp;&amp; C_3 &amp;= C_2 A_1 + C_1 A_2\\
+       \vdots &amp;&amp; \vdots\\
+       L = i  &amp;&amp; C_i &amp;= C_{i-1} A_1 + C_{i-2} A_2
+   \end{align}\end{split}\]</div>
+<p><strong>TODO</strong>: The Wold presentation is on the wrong side of matrix
+<span class="math notranslate nohighlight">\(A_i\)</span>. It has to be <span class="math notranslate nohighlight">\(A_1 C_0\)</span> instead of <span class="math notranslate nohighlight">\(C_0 A_1\)</span>,
+but I want to know the reason for this position change, except that it
+is obvious as the multiplication would not work without it.</p>
+</div>
+<div class="section" id="Exercise-3">
+<h2>Exercise 3<a class="headerlink" href="#Exercise-3" title="Permalink to this headline">¶</a></h2>
+<p><strong>Data Collection</strong></p>
+<p>Get the data from the data folder or go to <a class="reference external" href="https://fred.stlouisfed.org">https://fred.stlouisfed.org</a>
+and download the following quarterly data series (code in parentheses)
+for the years 1947Q1-2015Q4: - Real GDP (gdpc96) - GDP Deflator (GDPDEF)
+- Government consumption (GCE) - Population (B230RC0Q173SBEA) - Personal
+Consumption: Nondurable Goods (PCND) - Personal Consumption: Services
+(PCESV)</p>
+<p>Construct the three time series: real per capita GDP Y , real per capita
+government consumption G, and real per capita private consumption C
+(consisting of nondurables and services consumption).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre>
+<span></span><span class="k">using</span> <span class="n">LinearAlgebra</span><span class="p">,</span> <span class="n">XLSX</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre>
+<span></span><span class="n">xf</span> <span class="o">=</span> <span class="n">XLSX</span><span class="o">.</span><span class="n">readxlsx</span><span class="p">(</span><span class="s">&quot;problem_set_4_data/us_data.xlsx&quot;</span><span class="p">)</span>
+
+<span class="n">gdp_real</span> <span class="o">=</span> <span class="n">xf</span><span class="p">[</span><span class="s">&quot;Tabelle1!B8:B283&quot;</span><span class="p">]</span>
+<span class="n">gdp_deflator</span> <span class="o">=</span> <span class="n">xf</span><span class="p">[</span><span class="s">&quot;Tabelle1!D8:D283&quot;</span><span class="p">]</span>
+<span class="n">nom_gov_cons_inv</span> <span class="o">=</span> <span class="n">xf</span><span class="p">[</span><span class="s">&quot;Tabelle1!F8:F283&quot;</span><span class="p">]</span>
+<span class="n">nom_priv_cons_ndg</span> <span class="o">=</span> <span class="n">xf</span><span class="p">[</span><span class="s">&quot;Tabelle1!J8:J283&quot;</span><span class="p">]</span>
+<span class="n">nom_priv_cons_services</span> <span class="o">=</span> <span class="n">xf</span><span class="p">[</span><span class="s">&quot;Tabelle1!L8:L283&quot;</span><span class="p">]</span>
+<span class="n">nipa_pop</span> <span class="o">=</span> <span class="n">xf</span><span class="p">[</span><span class="s">&quot;Tabelle1!N8:N283&quot;</span><span class="p">]</span>
+
+<span class="n">close</span><span class="p">(</span><span class="n">xf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre>
+<span></span><span class="n">Y</span> <span class="o">=</span> <span class="n">gdp_real</span> <span class="o">./</span> <span class="n">nipa_pop</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nom_gov_cons_inv</span> <span class="o">./</span> <span class="n">nipa_pop</span> <span class="o">./</span> <span class="n">gdp_deflator</span>
+<span class="n">C</span> <span class="o">=</span> <span class="p">(</span><span class="n">nom_priv_cons_ndg</span> <span class="o">+</span> <span class="n">nom_priv_cons_services</span><span class="p">)</span> <span class="o">./</span> <span class="n">nipa_pop</span> <span class="o">./</span> <span class="n">gdp_deflator</span>
+
+<span class="n">timeline</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1947</span><span class="o">:</span><span class="mf">0.25</span><span class="o">:</span><span class="mf">2015.75</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p><strong>VAR Estimation</strong></p>
+<p>Use the following function to estimate a <span class="math notranslate nohighlight">\(VAR(4)\)</span> on the vector of
+observables <span class="math notranslate nohighlight">\(x_t = [log(G_t), log(Y_t), log(C_t)]\)</span> via OLS. Also
+include a constant and a linear time trend.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre>
+<span></span><span class="k">function</span> <span class="n">olsvar</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">trend_dummy</span><span class="p">)</span>
+
+    <span class="n">t</span><span class="p">,</span> <span class="n">K</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">&#39;</span>
+
+    <span class="c"># create lags</span>
+    <span class="n">Z</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="n">p</span><span class="o">:</span><span class="n">t</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">:</span><span class="n">p</span><span class="o">-</span><span class="mi">1</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="p">[</span><span class="n">Z</span><span class="p">;</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="n">p</span><span class="o">-</span><span class="n">i</span><span class="o">:</span><span class="n">t</span><span class="o">-</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="k">end</span>
+
+    <span class="k">if</span> <span class="n">trend_dummy</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="p">[</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">-</span><span class="n">p</span><span class="p">);</span> <span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">t</span><span class="o">-</span><span class="n">p</span><span class="p">)</span><span class="o">&#39;</span><span class="p">;</span> <span class="n">Z</span><span class="p">]</span>
+    <span class="k">else</span>
+        <span class="n">Z</span> <span class="o">=</span> <span class="p">[</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">-</span><span class="n">p</span><span class="p">);</span> <span class="n">Z</span><span class="p">]</span>
+    <span class="k">end</span>
+
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="o">:</span><span class="k">end</span><span class="p">]</span>
+    <span class="c"># Lecture 8, Equations 2 and following</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="p">(</span><span class="n">Y</span> <span class="o">*</span> <span class="n">Z</span><span class="o">&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Z</span> <span class="o">*</span> <span class="n">Z</span><span class="o">&#39;</span><span class="p">)</span>
+    <span class="n">U</span> <span class="o">=</span> <span class="n">Y</span> <span class="o">-</span> <span class="n">A</span> <span class="o">*</span> <span class="n">Z</span>
+    <span class="n">Σ</span> <span class="o">=</span> <span class="n">U</span> <span class="o">*</span> <span class="n">U</span><span class="o">&#39;</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span> <span class="n">p</span><span class="o">*</span><span class="n">K</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">1</span><span class="o">+</span><span class="n">trend_dummy</span><span class="p">]</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="n">trend_dummy</span><span class="o">:</span><span class="n">K</span><span class="o">*</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">trend_dummy</span><span class="p">]</span>
+
+    <span class="n">np</span> <span class="o">=</span> <span class="n">length</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="o">:</span><span class="p">])</span>
+    <span class="n">Σ_ML</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span> <span class="n">p</span><span class="o">*</span><span class="n">K</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">Σ</span>
+    <span class="n">AIC</span> <span class="o">=</span> <span class="n">logdet</span><span class="p">(</span><span class="n">Σ_ML</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">BIC</span> <span class="o">=</span> <span class="n">logdet</span><span class="p">(</span><span class="n">Σ_ML</span><span class="p">)</span> <span class="o">+</span> <span class="n">log</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span>
+    <span class="n">HQ</span>  <span class="o">=</span> <span class="n">logdet</span><span class="p">(</span><span class="n">Σ_ML</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">log</span><span class="p">(</span><span class="n">log</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="n">p</span><span class="p">)</span>
+
+
+    <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">Σ</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">AIC</span><span class="p">,</span> <span class="n">BIC</span><span class="p">,</span> <span class="n">HQ</span>
+<span class="k">end</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>The function for the OLS estimation of the <span class="math notranslate nohighlight">\(VAR(4)\)</span> requires three
+inputs where <code class="docutils literal notranslate"><span class="pre">y</span></code> is the matrix containing the log series of the three
+enitities, govermnent spending, GDP and private consumption. <code class="docutils literal notranslate"><span class="pre">p</span></code> is
+the number of lags, 4, and <code class="docutils literal notranslate"><span class="pre">trend_dummy</span></code> indicates whether the model
+should contain a trend dummy.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre>
+<span></span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="n">log</span><span class="o">.</span><span class="p">(</span><span class="n">G</span><span class="p">)</span> <span class="n">log</span><span class="o">.</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="n">log</span><span class="o">.</span><span class="p">(</span><span class="n">C</span><span class="p">)]</span>
+<span class="n">lags</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">trend</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre>
+<span></span><span class="n">A</span><span class="p">,</span> <span class="n">Σ</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">AIC</span><span class="p">,</span> <span class="n">BIC</span><span class="p">,</span> <span class="n">HQ</span> <span class="o">=</span> <span class="n">olsvar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">lags</span><span class="p">,</span> <span class="n">trend</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre>
+<span></span><span class="n">lag_maximum</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">aic_array</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">undef</span><span class="p">,</span> <span class="n">lag_maximum</span><span class="p">)</span>
+<span class="n">bic_array</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">undef</span><span class="p">,</span> <span class="n">lag_maximum</span><span class="p">)</span>
+<span class="n">hq_array</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">undef</span><span class="p">,</span> <span class="n">lag_maximum</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">:</span> <span class="n">lag_maximum</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">aic_array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bic_array</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">hq_array</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">olsvar</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">lag_maximum</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="o">:</span><span class="k">end</span><span class="p">,</span> <span class="o">:</span><span class="p">],</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-julia notranslate"><div class="highlight"><pre>
+<span></span><span class="n">argmin</span><span class="p">(</span><span class="n">aic_array</span><span class="p">),</span> <span class="n">argmin</span><span class="p">(</span><span class="n">bic_array</span><span class="p">),</span> <span class="n">argmin</span><span class="p">(</span><span class="n">hq_array</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
+<span></span>Out[8]:
+</pre></div>
+</div>
+<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
+<span></span>(2, 2, 2)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="problem_set_5.html" class="btn btn-neutral float-right" title="Problem Set 5: Structural VARs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="problem_set_3.html" class="btn btn-neutral" title="Problem Set 3: Assorted topics on single equation models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tobias Raabe.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

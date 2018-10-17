@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Introduction &amp; Basics &mdash; Time Series  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Autoregressive and Moving Average Processes" href="02_ar_ma.html" />
+    <link rel="prev" title="Julia" href="../getting_started/julia.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Time Series
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html#working-on-the-project">Working on the Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/julia.html">Julia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lecture</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction &amp; Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#wold-decomposition">1.1. Wold Decomposition</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02_ar_ma.html">2. Autoregressive and Moving Average Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07_var.html">3. Vector Autoregressive (VAR) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_svar.html">4. Structural Vector Autoregressive (SVAR) Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Problem Sets</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_1.html">Problem Set 1: Hodrick-Prescott Filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_2.html">Problem Set 2: Stationary Univariate Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_3.html">Problem Set 3: Assorted topics on single equation models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_4.html">Problem Set 4: VAR models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_5.html">Problem Set 5: Structural VARs</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Time Series</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>1. Introduction &amp; Basics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/lecture/01_introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="introduction-basics">
+<h1>1. Introduction &amp; Basics<a class="headerlink" href="#introduction-basics" title="Permalink to this headline">¶</a></h1>
+<p>This chapter includes the lecture materials. The structure is as follows:</p>
+<ol class="arabic simple">
+<li>ARMA</li>
+<li>Forecasting</li>
+</ol>
+<p>The main references are:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../zreferences.html#hodrick1997" id="id1">[HP97]</a></li>
+<li><a class="reference internal" href="../zreferences.html#kilian2017" id="id2">[KLutkepohl17]</a></li>
+<li><a class="reference internal" href="../zreferences.html#kirchgassner2012" id="id3">[KirchgassnerWH12]</a></li>
+</ul>
+<div class="section" id="wold-decomposition">
+<h2>1.1. Wold Decomposition<a class="headerlink" href="#wold-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>The Wold decomposition states that each covariance stationary, purely
+non-deterministic stochastic process can be represented by a linear combination
+of a series of uncorrelated random variables with zero mean and constant
+variance when all additive components are subtracted in advance.</p>
+<p>A series <span class="math notranslate nohighlight">\(x_t\)</span> with deterministic <span class="math notranslate nohighlight">\(\mu_t\)</span> can also be written as</p>
+<div class="math notranslate nohighlight">
+\[x_t - \mu_t = \sum^\infty_{j=0} \psi_j u_{t-j}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\psi_0 = 1\)</span> and <span class="math notranslate nohighlight">\(\sum^\infty_{j=0} \psi^2_j &lt; \infty\)</span>.
+Furthermore, <span class="math notranslate nohighlight">\(u_t\)</span> is a pure random process with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E[u_t] &amp;= 0\\
+E[u_t u_s] &amp;= \begin{cases}
+                  \sigma^2 &amp;\text{ if } &amp;t=s\\
+                  0 &amp;\text{ else} &amp;
+              \end{cases}\end{split}\]</div>
+<p>Here we are assuming that the error terms are uncorrelated, they do not need to
+be independent.</p>
+<p>The expectation for the mean is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}E[x_t - \mu_t] &amp;= E[\sum^\infty_{j=0} \psi_j u_{t-j}]\\
+               &amp;= \sum^\infty_{j=0} \psi_j E[u_{t-j}]\\
+               &amp;= 0\\
+        E[x_t] &amp;= \mu_t\end{split}\]</div>
+<p>For the variance, it holds that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}V(x_t) &amp;= E[(x_t - \mu_t)^2]\\
+       &amp;= E[(u_t + \psi_{t-1} u_{t-1} + \psi_{t-2} u_{t-2} + \dots)^2]\\
+       &amp;= E[u^2_t] + \psi_{t-1}^2 E[u^2_{t-1}] + \psi_{t-2}^2 E[u^2_{t-2}]
+          + \dots\\
+       &amp;= \sigma^2 \sum^\infty_{j=0} \psi^2_j\\
+       &amp;= \gamma(0)\end{split}\]</div>
+<p>As we can see, the variance is finite and not time dependent. For <span class="math notranslate nohighlight">\(\tau &gt;
+0\)</span>, we also get time independent covariances.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Cov(x_t, x_{t + \tau}) &amp;= E[(x_t - \mu_t)(x_{t + \tau} - \mu_{t + \tau})]\\
+                       &amp;= E[(\sum^\infty_{j=0} \psi_j u_{t - j})
+                            (\sum^\infty_{j=0} \psi_{j + \tau} u_{t - j
+                             + \tau})]\\
+                       &amp;= E[(u_t + \psi_1 u_{t-1} \dots + \psi_\tau
+                             u_{t - \tau} + \dots
+                            )
+                            (\psi_{t + \tau} u_{t + \tau} +
+                             \psi_{\tau + 1} u_{t + \tau - 1} + \dots
+                            )
+                           ]\end{split}\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="02_ar_ma.html" class="btn btn-neutral float-right" title="2. Autoregressive and Moving Average Processes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../getting_started/julia.html" class="btn btn-neutral" title="Julia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tobias Raabe.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Autoregressive and Moving Average Processes &mdash; Time Series  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3. Vector Autoregressive (VAR) Model" href="07_var.html" />
+    <link rel="prev" title="1. Introduction &amp; Basics" href="01_introduction.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Time Series
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html#working-on-the-project">Working on the Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/julia.html">Julia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lecture</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_introduction.html">1. Introduction &amp; Basics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Autoregressive and Moving Average Processes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#moving-average-processes">2.1. Moving Average Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autoregressive-processes">2.2. Autoregressive Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#moments">2.3. Moments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#link-between-stationarity-and-roots-of-the-characteristic-equation">2.4. Link between stationarity and roots of the characteristic equation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="07_var.html">3. Vector Autoregressive (VAR) Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_svar.html">4. Structural Vector Autoregressive (SVAR) Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Problem Sets</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_1.html">Problem Set 1: Hodrick-Prescott Filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_2.html">Problem Set 2: Stationary Univariate Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_3.html">Problem Set 3: Assorted topics on single equation models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_4.html">Problem Set 4: VAR models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_5.html">Problem Set 5: Structural VARs</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Time Series</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>2. Autoregressive and Moving Average Processes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/lecture/02_ar_ma.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="autoregressive-and-moving-average-processes">
+<h1>2. Autoregressive and Moving Average Processes<a class="headerlink" href="#autoregressive-and-moving-average-processes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="moving-average-processes">
+<h2>2.1. Moving Average Processes<a class="headerlink" href="#moving-average-processes" title="Permalink to this headline">¶</a></h2>
+<p>MA processes are characterized by a mean and lagged white noise. The first
+order moving average process is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x_t &amp;= \mu + u_t - \beta u_{t-1}\\
+x_t - \mu &amp;= (1 - \beta L) U-z\end{split}\]</div>
+</div>
+<div class="section" id="autoregressive-processes">
+<h2>2.2. Autoregressive Processes<a class="headerlink" href="#autoregressive-processes" title="Permalink to this headline">¶</a></h2>
+<p>AR processes model the dependent variable with weighted lagged terms and white
+noise. The first order autoregressive process looks like this</p>
+<div class="math notranslate nohighlight">
+\[x_t = \delta + \alpha x_{t-1} + u_t\]</div>
+<p>with <span class="math notranslate nohighlight">\(u_t sim \mathcal{N}(0, \sigma^2)\)</span>.</p>
+<p>The expression can be extended to infinite periods by recursively inserting
+values for <span class="math notranslate nohighlight">\(x_{t-1}, x_{t-2}, \dots\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[x_t = \alpha^{t - t_0} x_{t_0} + (1 + \alpha + \alpha^2 + \dots + \alpha^{t_0}) \delta + \sum^{t - t_0 - 1}_{j=0} \alpha^j u_{t-j}\]</div>
+<p>If <span class="math notranslate nohighlight">\(t_0 \to -\infty\)</span> and <span class="math notranslate nohighlight">\(|\alpha| &lt; 1\)</span>, the process can be modeled
+as a constant plus additional white noise.</p>
+<div class="math notranslate nohighlight">
+\[x_t = \underset{E(x_t)}{\frac{\delta}{1 - \alpha}} + \sum^\infty_{j=0} \alpha^j u_{t-j}\]</div>
+<p>The equations can also be exressed with the lag operator</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(1 - \alpha L) x_t &amp;= \delta + u_t\\
+x_t &amp;= \frac{\delta}{1 - \alpha L} + \frac{u_t}{1 - \alpha L}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\frac{1}{1 - \alpha L}\)</span> can be expanded to geometric series</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{1 - \alpha L} = 1 + \alpha L + \alpha^2 L^2 + \alpha^3 L^3 + \dots\]</div>
+</div>
+<div class="section" id="moments">
+<h2>2.3. Moments<a class="headerlink" href="#moments" title="Permalink to this headline">¶</a></h2>
+<p>Properties for <span class="math notranslate nohighlight">\(|\alpha| &lt; 1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\gamma(0) &amp;= V(x_t)\\
+          &amp;= E[(x_t - E[x_t])^2]\\
+          &amp;= E[(\frac{\delta}{1 - \alpha L} + \frac{u_t}{1 - \alpha L} -
+             E[\frac{\delta}{1 - \alpha L} +
+             \frac{u_t}{1 - \alpha L}])^2]\\
+          &amp;= E[(\frac{\delta}{1 - \alpha L} + \frac{u_t}{1 - \alpha L} -
+             \frac{\delta}{1 - \alpha L} -
+             \frac{E[u_t]}{1 - \alpha L})^2]\\
+          &amp;= E[(\frac{u_t}{1 - \alpha L})^2]\\
+          &amp;= E[]\end{split}\]</div>
+</div>
+<div class="section" id="link-between-stationarity-and-roots-of-the-characteristic-equation">
+<h2>2.4. Link between stationarity and roots of the characteristic equation<a class="headerlink" href="#link-between-stationarity-and-roots-of-the-characteristic-equation" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://stats.stackexchange.com/questions/183931/link-between-stationarity-of">https://stats.stackexchange.com/questions/183931/link-between-stationarity-of</a>-
+ar2-and-stability-condition-of-corresponding-diff</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="07_var.html" class="btn btn-neutral float-right" title="3. Vector Autoregressive (VAR) Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="01_introduction.html" class="btn btn-neutral" title="1. Introduction &amp; Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tobias Raabe.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Vector Autoregressive (VAR) Model &mdash; Time Series  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Structural Vector Autoregressive (SVAR) Model" href="08_svar.html" />
+    <link rel="prev" title="2. Autoregressive and Moving Average Processes" href="02_ar_ma.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Time Series
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html#working-on-the-project">Working on the Project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/julia.html">Julia</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Lecture</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01_introduction.html">1. Introduction &amp; Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_ar_ma.html">2. Autoregressive and Moving Average Processes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Vector Autoregressive (VAR) Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#moments">3.1. Moments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autocovariances">3.2. Autocovariances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="08_svar.html">4. Structural Vector Autoregressive (SVAR) Model</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Problem Sets</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_1.html">Problem Set 1: Hodrick-Prescott Filter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_2.html">Problem Set 2: Stationary Univariate Processes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_3.html">Problem Set 3: Assorted topics on single equation models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_4.html">Problem Set 4: VAR models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../problem_sets/problem_set_5.html">Problem Set 5: Structural VARs</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Additional Information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../zreferences.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Time Series</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>3. Vector Autoregressive (VAR) Model</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/lecture/07_var.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="vector-autoregressive-var-model">
+<h1>3. Vector Autoregressive (VAR) Model<a class="headerlink" href="#vector-autoregressive-var-model" title="Permalink to this headline">¶</a></h1>
+<p>The construction of a VAR model starts with the time series vector with
+<span class="math notranslate nohighlight">\(K\)</span> observables:</p>
+<div class="math notranslate nohighlight">
+\[y_t = [y_{1t}, y_{2t}, \dots, y_{Kt}]'\]</div>
+<p>The DGP consists of a deterministic and stochastic part</p>
+<div class="math notranslate nohighlight">
+\[y_t = \mu_t + x_t\]</div>
+<p>with <span class="math notranslate nohighlight">\(E[y_t] = \mu_t\)</span> as the expected values. <span class="math notranslate nohighlight">\(\mu_t\)</span> can be a
+constant, polynomial trend terms, seasonal dummies or more.</p>
+<p>The stochastic term is a linear VAR process of order <span class="math notranslate nohighlight">\(p\)</span></p>
+<div class="math notranslate nohighlight">
+\[x_t = A_1 x_{t-1} + A_2 x_{t-2} + \dots + A_p x_{t-p} + u_t\]</div>
+<p>where <span class="math notranslate nohighlight">\(u_t\)</span> is white noise with <span class="math notranslate nohighlight">\(E[u_t] = 0\)</span>, <span class="math notranslate nohighlight">\(E[u_t u_s] = 0
+\forall s \neq t\)</span> and <span class="math notranslate nohighlight">\(E[u_t u'_t] = \Sigma_u\)</span> such that <span class="math notranslate nohighlight">\(u_t \sim
+(0, \Sigma_u)\)</span>.</p>
+<p>It is convenient to rewrite the former expression for the stochastic part as</p>
+<div class="math notranslate nohighlight">
+\[A(L) x_t = u_t\]</div>
+<p>with <span class="math notranslate nohighlight">\(A(L) = I_k - A_1 L - A_2 L^2 - \dots A_p L^p\)</span>. Inserting this equation into the DGP equation yields:</p>
+<div class="math notranslate nohighlight">
+\[A(L) y_t = A(L) \mu + u_t\]</div>
+<p>If the deterministic term is just a constant, i.e. <span class="math notranslate nohighlight">\(\mu_t = \mu_0\)</span></p>
+<div class="math notranslate nohighlight">
+\[y_t = \nu + A_1 y_{t-1} + \dots + A_p y_{t-p} + u_t\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nu = A(L) \mu_0 = A(1) \mu_0 = (I_k - \sum^p_{j=1} A_j) \mu_0\)</span>.</p>
+<p>The process is stable if all roots of the following polynomial are outside the
+unit circle.</p>
+<div class="math notranslate nohighlight">
+\[\det(A(z)) = \det(I_K - A_1 z - \dots - A_pz^p) \neq 0 \forall z \in
+\mathcal{C}, \mid z \mid \leq 1\]</div>
+<p>This is true under common assumptions:</p>
+<ul class="simple">
+<li>costant mean</li>
+<li>white noise with time-invariant covariance matrix</li>
+<li>stationarity</li>
+</ul>
+<p>A stable <span class="math notranslate nohighlight">\(VAR(p)\)</span> process can be represented as a moving average by
+successive substitution. Consider the example of the following <span class="math notranslate nohighlight">\(VAR(1)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}y_t    &amp;= \nu + A_1 y_{t-1} + u_t\\
+y_t    &amp;= \nu + A_1 (\nu + A_1 y_{t-2} + u_{t-1}) + u_t\\
+\vdots &amp;= \vdots\\
+y_t    &amp;= \sum^\infty_{i=0} A^i_1 \nu + \sum^\infty_{i=0} A^i_1 u_{t-i}\\
+       &amp;= (I_K - A_1)^{-1} \nu + \sum^\infty_{i = 0} A^i_1 u_{t-i}\end{split}\]</div>
+<p>If all eigenvalues of <span class="math notranslate nohighlight">\(A_1\)</span> have modulus &lt; 1, the sequence <span class="math notranslate nohighlight">\(A^i_1,
+i = 1, \dots\)</span> is absolutely summable and converges to <span class="math notranslate nohighlight">\((I_K - A_1) \nu\)</span>
+for <span class="math notranslate nohighlight">\(j\to\infty\)</span>.</p>
+<p>We can also obtain the Wold representation of the process. Rewrite the model to</p>
+<div class="math notranslate nohighlight">
+\[A(L) y_t = \nu + u_t\]</div>
+<p>Then, let <span class="math notranslate nohighlight">\(\phi(L) = \sum^\infty_{i=0} \phi_i L^i\)</span> such that <span class="math notranslate nohighlight">\(\phi(L)A(L) = I_k\)</span>. Premultiplying yields</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}y_t &amp;= \phi(L) \nu + \phi(L) u_t\\
+    &amp;= \underbrace{\sum^\infty_{i=0} \phi_i}_{=\mu} \nu
+       + \sum^\infty_{i=0} \phi_i u_{t-i}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\phi(L)\)</span> is often denoted as <span class="math notranslate nohighlight">\(A(L)^{-1}\)</span>, meaning the
+inverse of the expression. <span class="math notranslate nohighlight">\(A(L)\)</span> is invertible if <span class="math notranslate nohighlight">\(\mid A(z) \mid
+\neq 0\)</span> for <span class="math notranslate nohighlight">\(\mid z \mid \leq 1\)</span>, which is the stability condition. Each
+element <span class="math notranslate nohighlight">\(\phi_i\)</span> can be computed recursively with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\phi_0 &amp;= I_K\\
+\phi_i &amp;= \sum^i_{j=0} \phi_{i-j} A_j &amp;\text{for } i = 1, 2, \dots.\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(A_j = 0\)</span> for <span class="math notranslate nohighlight">\(j &gt; p\)</span>. For a stable process, <span class="math notranslate nohighlight">\(\phi_i
+\to 0\)</span> as <span class="math notranslate nohighlight">\(i \to \infty\)</span>.</p>
+<div class="section" id="moments">
+<h2>3.1. Moments<a class="headerlink" href="#moments" title="Permalink to this headline">¶</a></h2>
+<p>The distribution is solely determined by <span class="math notranslate nohighlight">\(u_t\)</span>. The mean follows immediately from the Wold representation.</p>
+<div class="math notranslate nohighlight">
+\[E[y_t] = \mu\]</div>
+<p>The covariance is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Gamma_y(h) &amp;= Cov(y_t, y_{t-h})\\
+            &amp;= E[(y_t - \mu)(y_{t-h} - \mu})']\\
+            &amp;= \sum^\infty_{i=0} \phi_{h+i} \Sigma_u \phi'_i\end{split}\]</div>
+</div>
+<div class="section" id="autocovariances">
+<h2>3.2. Autocovariances<a class="headerlink" href="#autocovariances" title="Permalink to this headline">¶</a></h2>
+<p>Suppose that <span class="math notranslate nohighlight">\(y_t\)</span> is a stationary and stable <span class="math notranslate nohighlight">\(VAR(1)\)</span> process with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}y_t &amp;= \nu + A_1 y_{t-1} + u_t\\
+y_t - \mu &amp;= A_1 (y_{t-1} - \mu) + u_t\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(E[u_t u_'t = \Sigma_u\)</span> and <span class="math notranslate nohighlight">\(E[y_t] = \mu\)</span>. Postmultiply by
+<span class="math notranslate nohighlight">\((y_{t-h} - \mu)'\)</span> and taking expectation yields</p>
+<div class="math notranslate nohighlight">
+\[E[(y_t - \mu)(y_{t-h} - \mu)'] = A_1 E[(y_{t-1} - \mu)(y_{t-h} - \mu)'] + E[u_t (y_{t-h} - \mu)']\]</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="08_svar.html" class="btn btn-neutral float-right" title="4. Structural Vector Autoregressive (SVAR) Model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="02_ar_ma.html" class="btn btn-neutral" title="2. Autoregressive and Moving Average Processes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tobias Raabe.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
