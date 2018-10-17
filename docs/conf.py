@@ -44,6 +44,7 @@ needs_sphinx = "1.7.2"
 extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.mathjax",
+    "sphinx.ext.githubpages",
     "sphinxcontrib.bibtex",
     "nbsphinx",
 ]
