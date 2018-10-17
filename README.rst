@@ -1,13 +1,13 @@
 .. raw:: html
 
-    | <b><a href="https://mybinder.org/v2/gh/tobiasraabe/time_series/master">Binder</a></b>
+    | <b><a href="https://mybinder.org/v2/gh/tobiasraabe/time_series/master?filepath=docs%2Fproblem_sets">Binder</a></b>
     | <b><a href="https://tobiasraabe.github.io/time_series">Website</a></b>
     |
 
     <h1>Time Series</h1>
 
 .. image:: https://mybinder.org/badge.svg
-    :target: https://mybinder.org/v2/gh/tobiasraabe/time_series/master
+    :target: https://mybinder.org/v2/gh/tobiasraabe/time_series/master?filepath=docs%2Fproblem_sets
     :alt: Binder
 
 
