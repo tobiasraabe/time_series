@@ -9,11 +9,16 @@ help:
 	@echo '   make livehtml                       start development server    '
 
 
+clean:
+	cd docs && make clean
+
 html:
 	cd docs && make html
 
 github:
-	ghp-import -m "Generate Time Series site" --branch $(GITHUB_PAGES_BRANCH) --no-jekyll --push $(DOCS_DIR)
+	make clean
+	make html
+	ghp-import -m "Generate Time Series site" --branch $(GITHUB_PAGES_BRANCH) --push --force $(DOCS_DIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
 
 livehtml:
