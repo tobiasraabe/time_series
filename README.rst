@@ -23,6 +23,6 @@ analyses.
 .. raw:: html
 
     <p align="center">
-        <img src="_static/images/fig-hodrick-prescott-filter.png" width="600">
+        <img src="docs/_static/images/fig-hodrick-prescott-filter.png" width="600">
         <br><b>Example of the Hodrick-Prescott-Filter</b>
     </p>
