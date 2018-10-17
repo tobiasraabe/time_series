@@ -7,7 +7,7 @@
     <h1>Time Series</h1>
 
 .. image:: https://mybinder.org/badge.svg
-    :target: https://mybinder.org/v2/gh/tobiasraabe/time_series/master
+    :target: https://mybinder.org/v2/gh/tobiasraabe/time_series/master?filepath=docs%2Fproblem_sets
     :alt: Binder
 
 
