@@ -23,3 +23,8 @@ examples are implemented in Julia. It is possible to navigate through the
 course as a documentation on readthedocs or browse through the problem sets
 which offer programming examples in Julia. Just click on the badges to get to
 one of them.
+
+
+Installation
+------------
+
